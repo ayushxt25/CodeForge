@@ -3,6 +3,8 @@ import axios from "axios";
 
 export const AuthContext = createContext();
 
+const API_URL = import.meta.env.VITE_API_URL || "/api";
+
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -10,7 +12,7 @@ export const AuthProvider = ({ children }) => {
 
   // Axios instance
   const api = axios.create({
-    baseURL: "/api",
+    baseURL: API_URL,
   });
 
   if (token) {

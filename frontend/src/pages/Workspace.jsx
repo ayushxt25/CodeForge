@@ -4,7 +4,10 @@ import { AuthContext } from "../context/AuthContext";
 import io from "socket.io-client";
 import EditorScreen from "../components/EditorScreen";
 
-const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || "http://localhost:5000";
+const SOCKET_URL =
+  import.meta.env.VITE_SOCKET_URL ||
+  import.meta.env.VITE_API_URL?.replace(/\/api\/?$/, "") ||
+  window.location.origin;
 
 const Workspace = () => {
   const { projectId } = useParams();

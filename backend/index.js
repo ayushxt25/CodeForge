@@ -11,23 +11,57 @@ import projectRoutes from "./routes/projectRoutes.js";
 import Project from "./models/Project.js";
 
 const app = express();
-app.use(cors());
+
+const isProduction = process.env.NODE_ENV === "production";
+const mongoUri = process.env.MONGO_URI;
+const jwtSecret = process.env.JWT_SECRET;
+const configuredOrigins = process.env.CORS_ORIGIN || process.env.FRONTEND_URL || "";
+const allowedOrigins = configuredOrigins
+  .split(",")
+  .map((origin) => origin.trim())
+  .filter(Boolean);
+
+if (!mongoUri) {
+  throw new Error("MONGO_URI is required");
+}
+
+if (!jwtSecret) {
+  throw new Error("JWT_SECRET is required");
+}
+
+if (isProduction && allowedOrigins.length === 0) {
+  throw new Error("FRONTEND_URL or CORS_ORIGIN is required in production");
+}
+
+const corsOptions = {
+  origin(origin, callback) {
+    if (!origin || allowedOrigins.length === 0 || allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    return callback(new Error(`CORS blocked origin: ${origin}`));
+  },
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // Connect to DB
 mongoose
-  .connect(process.env.MONGO_URI || "mongodb://127.0.0.1:27017/codeforge")
+  .connect(mongoUri)
   .then(() => console.log("MongoDB Connected"))
   .catch((err) => console.log("MongoDB Connection Error: ", err));
 
 // API Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/projects", projectRoutes);
+app.get("/api/health", (req, res) => {
+  res.json({ status: "ok" });
+});
 
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "*", // Allowing connections from all origins for now
+    origin: allowedOrigins.length > 0 ? allowedOrigins : "*",
   },
 });
 
@@ -121,5 +155,5 @@ app.get("*", (req, res) => {
 });
 
 server.listen(port, () => {
-  console.log("Server is working on port 5000");
+  console.log(`Server is working on port ${port}`);
 });
