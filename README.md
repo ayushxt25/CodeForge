@@ -17,11 +17,11 @@ You can access the live demo of the project at:
 
 ## Screenshot Of Application
 
-![**image_preview of Application**](https://ik.imagekit.io/vinaymry/Screenshot%202025-01-25%20162840.png?updatedAt=1737803609259)  
+![CodeForge sign in screen](docs/screenshots/login.png)
 
-![**image_ Of MultipleUser Connect Through Unique RoomId**](https://ik.imagekit.io/vinaymry/Screenshot%202025-01-25%20162957.png?updatedAt=1737803609239)
+![CodeForge dashboard](docs/screenshots/dashboard.png)
 
-![**image_ Of MultipleUser Connect Through Unique RoomId**](https://ik.imagekit.io/vinaymry/Screenshot%202025-01-25%20170452.png?updatedAt=1737804986738)
+![CodeForge workspace editor](docs/screenshots/workspace.png)
 
 *Example of the real-time code editing interface.*
 
