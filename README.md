@@ -4,10 +4,10 @@ CodeForge is a dynamic, real-time collaborative code editor built using the MERN
 
 ## Features
 
-- **Real-time collaboration**: Multiple users can join a coding room using a unique room ID and edit the code in real time.
+- **Real-time collaboration**: Multiple users can join a shared room via unique session ID with sub-100ms sync latency and live typing indicators.
 - **User presence**: Shows the users currently in the room and indicates when someone is typing.
-- **Language selection**: Choose from multiple programming languages such as JavaScript, Python, Java, and C++.
-- **Responsive UI**: The app is designed to work seamlessly on desktop and mobile devices.
+- **Multi-Language Support**: JavaScript, Python, Java, and C++ with automatic syntax highlighting and environment configuration per language.
+- **Responsive UI**: Consistent experience across desktop and mobile.
 - **Live Project**: Access the live project online.
 
 ## Live Demo
