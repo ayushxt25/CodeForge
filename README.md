@@ -12,8 +12,7 @@ CodeForge is a dynamic, real-time collaborative code editor built using the MERN
 
 ## Live Demo
 
-You can access the live demo of the project at:  
-[CodeForge Live Project](https://CodeForge.onrender.com/)
+
 
 ## Screenshot Of Application
 
